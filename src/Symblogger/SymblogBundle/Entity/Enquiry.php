@@ -3,6 +3,9 @@
 
 namespace Symblogger\SymblogBundle\Entity;
 
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints as Assert;
+
 class Enquiry
 {
     protected $name;
@@ -52,4 +55,27 @@ class Enquiry
     {
         $this->body = $body;
     }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('name', new Assert\Range(array(
+            'min' => 1
+        )));
+
+        $metadata->addPropertyConstraint('email', new Assert\Range(array(
+            'invalidMessage' => 'Invalid Email, Please fill correct Email'
+        )));
+
+        $metadata->addPropertyConstraint('subject', new Assert\Range(array(
+            'min' => 1
+        )));
+        $metadata->addPropertyConstraint('subject', new Assert\Range(array(
+            'max' => 50
+        )));
+
+        $metadata->addPropertyConstraint('body', new Assert\Range(array(
+            'max' => 50
+        )));
+    }
+
 }
