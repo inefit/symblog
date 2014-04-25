@@ -1,0 +1,4 @@
+symblogger_symblog:
+    resource: "@SymbloggerSymblogBundle/Resources/config/routing.yml"
+    prefix:   /
+

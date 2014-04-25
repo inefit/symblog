@@ -1,0 +1,18 @@
+_welcome:
+    pattern:  /
+    defaults: { _controller: SymbloggerSymblogBundle:Page:index }
+    requirements:
+        _method:  GET
+
+
+_about:
+    pattern:  /about
+    defaults: { _controller: SymbloggerSymblogBundle:Page:about }
+    requirements:
+        _method:  GET
+
+_contact:
+    pattern:  /contact
+    defaults: { _controller: SymbloggerSymblogBundle:Page:contact }
+    requirements:
+        _method:  GET
