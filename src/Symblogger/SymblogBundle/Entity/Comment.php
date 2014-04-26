@@ -3,6 +3,9 @@
 
 namespace Symblogger\SymblogBundle\Entity;
 
+use Symfony\Component\Validator\Mapping\ClassMetadata;
+use Symfony\Component\Validator\Constraints\NotBlank;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -212,5 +215,15 @@ class Comment
     public function getBlog()
     {
         return $this->blog;
+    }
+
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('user', new NotBlank(array(
+            'message' => 'You must enter your name'
+        )));
+        $metadata->addPropertyConstraint('comment', new NotBlank(array(
+            'message' => 'You must enter a comment'
+        )));
     }
 }
