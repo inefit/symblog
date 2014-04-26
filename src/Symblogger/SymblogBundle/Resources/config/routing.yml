@@ -16,3 +16,10 @@ _contact:
     defaults: { _controller: SymbloggerSymblogBundle:Page:contact }
     requirements:
         _method:  GET|POST
+
+_blog_show:
+    pattern:  /{id}
+    defaults: { _controller: SymbloggerSymblogBundle:Blog:show }
+    requirements:
+        _method:  GET
+        id: \d+
