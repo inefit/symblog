@@ -18,6 +18,8 @@ class BlogController extends Controller
         $em = $this->getDoctrine()->getEntityManager();
 
         $blog = $em->getRepository('SymbloggerSymblogBundle:Blog')->find($id);
+        $comments = $em->getRepository('SymbloggerSymblogBundle:Comment')
+                   ->getCommentsForBlog($blog->getId());
 
         if (!$blog) {
             throw $this->createNotFoundException('Unable to find Blog post.');
@@ -25,6 +27,7 @@ class BlogController extends Controller
 
         return $this->render('SymbloggerSymblogBundle:Blog:show.html.twig', array(
             'blog'      => $blog,
+            'comments'  => $comments,
         ));
     }
 }
