@@ -45,7 +45,8 @@ class CommentController extends Controller
             // TODO: Persist the comment entity
 
             return $this->redirect($this->generateUrl('_blog_show', array(
-                'id' => $comment->getBlog()->getId())) .
+                'id' => $comment->getBlog()->getId(),
+                'slug' => $comment->getBlog()->getSlug())) .
                 '#comment-' . $comment->getId()
             );
         }
@@ -59,7 +60,7 @@ class CommentController extends Controller
     protected function getBlog($blog_id)
     {
         $em = $this->getDoctrine()
-                    ->getEntityManager();
+                    ->getManager();
 
         $blog = $em->getRepository('SymbloggerSymblogBundle:Blog')->find($blog_id);
 

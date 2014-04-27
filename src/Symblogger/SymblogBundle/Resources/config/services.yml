@@ -2,6 +2,12 @@ parameters:
 #    symblogger_symblog.example.class: Symblogger\SymblogBundle\Example
 
 services:
+   symblogger_symblog.twig.extension:
+     class: Symblogger\SymblogBundle\Twig\Extensions\SymbloggerSymblogExtension
+     tags:
+     - { name: twig.extension }
+
+
 #    symblogger_symblog.example:
 #        class: %symblogger_symblog.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]

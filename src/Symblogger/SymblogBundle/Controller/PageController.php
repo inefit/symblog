@@ -16,7 +16,7 @@ class PageController extends Controller
 
         $blogs = $em->getRepository('SymbloggerSymblogBundle:Blog')
                     ->getLatestBlogs();
-                    
+
         return $this->render('SymbloggerSymblogBundle:Page:index.html.twig', array(
             'blogs' => $blogs
         ));
@@ -57,4 +57,26 @@ class PageController extends Controller
 	        'form' => $form->createView()
 	    ));
     }
+
+    public function sidebarAction()
+	{
+	    $em = $this->getDoctrine()->getManager();
+
+	    $tags = $em->getRepository('SymbloggerSymblogBundle:Blog')->getTags();
+
+	    $tagWeights = $em->getRepository('SymbloggerSymblogBundle:Blog')->getTagWeights($tags);
+
+	    $commentLimit   = $this->container->getParameter('blogger_blog.comments.latest_comment_limit');
+	    $latestComments = $em->getRepository('SymbloggerSymblogBundle:Comment')
+	                         ->getLatestComments($commentLimit);
+
+	    return $this->render('SymbloggerSymblogBundle:Page:sidebar.html.twig', array(
+	        'latestComments'    => $latestComments,
+	        'tags'              => $tagWeights
+	    ));
+
+	    return $this->render('SymbloggerSymblogBundle:Page:sidebar.html.twig', array(
+	        'tags' => $tagWeights
+	    ));
+	}
 }

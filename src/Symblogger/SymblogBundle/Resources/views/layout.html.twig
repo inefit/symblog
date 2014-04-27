@@ -1,11 +1,17 @@
-{# src/Blogger/BlogBundle/Resources/views/layout.html.twig #}
+{# src/Symblogger/SymblogBundle/Resources/views/layout.html.twig #}
 {% extends '::base.html.twig' %}
 
 {% block stylesheets %}
     {{ parent() }}
-    <link href="{{ asset('bundles/symbloggersymblog/css/blog.css') }}" type="text/css" rel="stylesheet" />
+    {% stylesheets
+        '@SymbloggerSymblogBundle/Resources/public/css/*'
+        output='css/blogger.css'
+    %}
+   	<link href="{{ asset_url }}" rel="stylesheet" media="screen" />
+
+   	{% endstylesheets %}
 {% endblock %}
 
 {% block sidebar %}
-    Sidebar content
+    {% render (controller("SymbloggerSymblogBundle:Page:sidebar")) %}
 {% endblock %}

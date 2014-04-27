@@ -13,9 +13,9 @@ class BlogController extends Controller
     /**
      * Show a blog entry
      */
-    public function showAction($id)
+    public function showAction($id,$slug)
     {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
 
         $blog = $em->getRepository('SymbloggerSymblogBundle:Blog')->find($id);
         $comments = $em->getRepository('SymbloggerSymblogBundle:Comment')

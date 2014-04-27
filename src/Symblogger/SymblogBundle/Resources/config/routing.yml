@@ -18,7 +18,7 @@ _contact:
         _method:  GET|POST
 
 _blog_show:
-    pattern:  /{id}
+    pattern:  /{id}/{slug}
     defaults: { _controller: SymbloggerSymblogBundle:Blog:show }
     requirements:
         _method:  GET
